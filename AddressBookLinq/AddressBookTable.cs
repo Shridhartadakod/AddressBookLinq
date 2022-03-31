@@ -94,6 +94,18 @@ namespace AddressBookLinq
                 Console.WriteLine("No such record is available");
             }
         }
+
+        //Creating method to retrive the data 
+        public void RetrieveData(string City, string State)
+        {
+            AddContacts();
+            var recordData = from data in table.AsEnumerable() where data.Field<string>("City") == City || data.Field<string>("State") == State select data;
+            foreach (DataRow dtRows in recordData)
+            {
+
+                Console.WriteLine("{0} \t {1} \t {2} \t {3} \t {4} \t {5} \t {6} \t {7}\n", dtRows["FirstName"], dtRows["LastName"], dtRows["Address"], dtRows["City"], dtRows["State"], dtRows["Zip"], dtRows["PhoneNumber"], dtRows["Email"]);
+            }
+        }
         public void Display()
         {
             foreach (DataRow dtRows in table.Rows)
