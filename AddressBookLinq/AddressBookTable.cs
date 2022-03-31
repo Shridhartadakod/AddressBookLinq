@@ -61,7 +61,7 @@ namespace AddressBookLinq
             contact.State = "Karnataka";
             contact.zip = 580001;
             InsertintoDataTable(contact);
-            
+            Display();
         }
 
         //Creating method to edit the existing contact
@@ -71,7 +71,7 @@ namespace AddressBookLinq
             var recordData = (from table in table.AsEnumerable() where table.Field<string>("FirstName") == FirstName select table).FirstOrDefault();
             if (recordData != null)
             {
-                recordData[ColumnName] = "Sampada";
+                recordData[ColumnName] = "Sagar";
                 Display();
             }
             else
@@ -79,7 +79,21 @@ namespace AddressBookLinq
                 Console.WriteLine("No such record is available....");
             }
         }
-       
+        //Creating  method to delete the contacts 
+        public void DeleteContact(string FirstName)
+        {
+            AddContacts();
+            var recordData = (from data in table.AsEnumerable() where data.Field<string>("FirstName") == FirstName select data).FirstOrDefault();
+            if (recordData != null)
+            {
+                table.Rows.Remove(recordData);
+                Display();
+            }
+            else
+            {
+                Console.WriteLine("No such record is available");
+            }
+        }
         public void Display()
         {
             foreach (DataRow dtRows in table.Rows)

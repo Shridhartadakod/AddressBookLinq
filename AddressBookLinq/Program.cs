@@ -3,6 +3,7 @@ using AddressBookLinq;
 
 Console.WriteLine("Hello, World!");
 AddressBookTable table = new AddressBookTable();
-table.AddContacts();
-table.Display();
+//table.AddContacts();
+//table.Display();
+table.EditContact("Harish", "FirstName");
 Console.ReadKey();
