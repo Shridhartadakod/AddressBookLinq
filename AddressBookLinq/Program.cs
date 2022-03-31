@@ -1,5 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using AddressBookLinq;
+
 Console.WriteLine("Hello, World!");
 AddressBookTable table = new AddressBookTable();
-table.AddToDataTable();
+table.AddContacts();
+table.Display();
 Console.ReadKey();
