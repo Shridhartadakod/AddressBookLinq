@@ -61,8 +61,25 @@ namespace AddressBookLinq
             contact.State = "Karnataka";
             contact.zip = 580001;
             InsertintoDataTable(contact);
-
+            
         }
+
+        //Creating method to edit the existing contact
+        public void EditContact(string FirstName, string ColumnName)
+        {
+            AddContacts();
+            var recordData = (from table in table.AsEnumerable() where table.Field<string>("FirstName") == FirstName select table).FirstOrDefault();
+            if (recordData != null)
+            {
+                recordData[ColumnName] = "Sampada";
+                Display();
+            }
+            else
+            {
+                Console.WriteLine("No such record is available....");
+            }
+        }
+       
         public void Display()
         {
             foreach (DataRow dtRows in table.Rows)
